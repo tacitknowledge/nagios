@@ -135,8 +135,8 @@ directory "#{node['nagios']['state_dir']}/rw" do
 end
 
 execute 'archive-default-nagios-object-definitions' do
-  command "mv #{node['nagios']['config_dir']}/*_#{node['nagios']['server']['name']}*.cfg #{node['nagios']['conf_dir']}/dist"
-  not_if { Dir.glob("#{node['nagios']['config_dir']}/*_#{node['nagios']['server']['name']}*.cfg").empty? }
+  command "mv #{node['nagios']['config_dir']}/*_#{node['nagios']['dist_prefix']}*.cfg #{node['nagios']['conf_dir']}/dist"
+  not_if { Dir.glob("#{node['nagios']['config_dir']}/*_#{node['nagios']['dist_prefix']}*.cfg").empty? }
 end
 
 directory "#{node['nagios']['conf_dir']}/certificates" do

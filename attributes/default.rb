@@ -70,6 +70,7 @@ case node['platform_family']
 when 'debian'
   default['nagios']['server']['install_method'] = 'package'
   default['nagios']['server']['service_name']   = 'nagios3'
+  default['nagios']['dist_prefix'] = 'nagios2'
   default['nagios']['server']['mail_command']   = '/usr/bin/mail'
   default['nagios']['cgi-path'] = "/cgi-bin/#{node['nagios']['server']['service_name']}"
 when 'rhel', 'fedora'
@@ -78,10 +79,12 @@ when 'rhel', 'fedora'
   method = node['platform_family'] == 'rhel' && node['platform_version'].to_i < 6 ? 'source' : 'package'
   default['nagios']['server']['install_method'] = method
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['dist_prefix'] = 'nagios'
   default['nagios']['server']['mail_command']   = '/bin/mail'
 else
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['dist_prefix'] = 'nagios'
   default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
